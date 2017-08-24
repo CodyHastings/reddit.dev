@@ -1,0 +1,13 @@
+@extends('layouts.master')
+
+@section('title')
+
+<title>lowercase</title>
+
+@stop
+@section('content')
+
+	<h1> lowercased word:  {{$lword}} </h1>
+	<a href="{{action('HomeController@uppercase')}}">Uppercase Word</a>
+
+@stop

@@ -11,6 +11,22 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', 'HomeController@showWelcome');
+
+Route::get('/uppercase/{word}', 'HomeController@uppercase');
+
+Route::get('/lowercase/{word}', 'HomeController@lowercase');
+
+Route::get('/increment/{number}', 'HomeController@increment');
+
+Route::get('/random', function (){
+	return rand(1, 6);
+});
+
+Route::get('/roll-dice/{guess}', function ($guess){
+	$randomNumber = rand(1, 6);
+	$data['randomNumber'] = $randomNumber;
+	$data['guess'] = $guess;
+
+	return view('roll-dice', $data);
 });
