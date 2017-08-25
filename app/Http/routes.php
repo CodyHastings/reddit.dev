@@ -19,6 +19,8 @@ Route::get('/lowercase/{word}', 'HomeController@lowercase');
 
 Route::get('/increment/{number}', 'HomeController@increment');
 
+Route::resource('posts', 'PostsController');
+
 Route::get('/random', function (){
 	return rand(1, 6);
 });
