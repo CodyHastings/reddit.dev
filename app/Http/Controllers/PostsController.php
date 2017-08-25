@@ -26,7 +26,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
     /**
@@ -37,7 +37,7 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request);
     }
 
     /**
@@ -58,8 +58,11 @@ class PostsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
+
     {
-        //
+        $data["id"] = $id;
+
+        return view('posts.edit', $data);
     }
 
     /**
@@ -71,7 +74,7 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return 'update has been successfull';
     }
 
     /**
@@ -82,6 +85,6 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        echo "$id has been destroyed";
     }
 }
