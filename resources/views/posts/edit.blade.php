@@ -9,7 +9,7 @@
 @section('content')
 
 	<main class="container">
-		<h1>Edite a post here</h1>
+		<h1>Edit a post here</h1>
 		<form method="POST" action="{{ action('PostsController@update', array(1)) }}">
 			{!! csrf_field() !!}
 			{{ method_field('PUT') }}

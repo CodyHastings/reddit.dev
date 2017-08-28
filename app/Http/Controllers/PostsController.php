@@ -37,7 +37,18 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
+        $title = $request->input('title');
+        $content = $request->input('content');
+        $url = $request->input('url');
+        $post = new \App\Models\Post();
+        $post->title = $title;
+        $post->content = $content;
+        $post->url = $url;
+        $post->user_id = 1;
+        $post->save();
+
+        return redirect()->action('PostsController@index');
+
     }
 
     /**
@@ -48,7 +59,7 @@ class PostsController extends Controller
      */
     public function show($id)
     {
-        //
+        return redirect()->action('PostsController@show');
     }
 
     /**
