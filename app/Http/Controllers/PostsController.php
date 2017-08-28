@@ -16,7 +16,9 @@ class PostsController extends Controller
      */
     public function index()
     {
-         echo "this is the index";
+        $posts = \App\Models\Post::paginate(4);
+        $data['posts'] = $posts;
+        return view('posts.index', $data);
     }
 
     /**
@@ -37,6 +39,8 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, \App\Models\Post::$rules);
+
         $title = $request->input('title');
         $content = $request->input('content');
         $url = $request->input('url');
@@ -59,7 +63,9 @@ class PostsController extends Controller
      */
     public function show($id)
     {
-        return redirect()->action('PostsController@show');
+        $post = \App\Models\Post::find($id);
+        $data['post'] = $post;
+        return view('posts.show',$data);
     }
 
     /**
@@ -71,7 +77,8 @@ class PostsController extends Controller
     public function edit($id)
 
     {
-        $data["id"] = $id;
+        $post = \App\Models\Post::find($id);
+        $data['post'] = $post;
 
         return view('posts.edit', $data);
     }
@@ -84,8 +91,17 @@ class PostsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
+        
+        
     {
-        return 'update has been successfull';
+        $this->validate($request, \App\Models\Post::$rules);
+        $post = \App\Models\Post::find($id);
+        $post->title = $request->title;
+        $post->content = $request->content;
+        $post->url = $request->url;
+        $post->user_id = 1;
+        $post->save();
+        return \Redirect::action('PostsController@show', $post->id);
     }
 
     /**
@@ -96,6 +112,8 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        echo "$id has been destroyed";
+        $post = \App\Models\Post::find($id);
+        $post->delete();
+        return \Redirect::action('PostsController@index');
     }
 }
