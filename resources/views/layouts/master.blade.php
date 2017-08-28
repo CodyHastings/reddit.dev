@@ -8,6 +8,15 @@
 	@yield('title')
 </head>
 <body>
+	@if (session()->has('successMessage'))
+    <div class="alert alert-success">{{ session('successMessage') }}</div>
+	@endif
+	@if (session()->has('updateMessage'))
+    <div class="alert alert-success">{{ session('updateMessage') }}</div>
+	@endif
+	@if (session()->has('destroyMessage'))
+    <div class="alert alert-error">{{ session('destroyMessage') }}</div>
+	@endif
 	@yield('content')
 
 <script
