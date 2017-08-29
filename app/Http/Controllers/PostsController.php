@@ -103,7 +103,7 @@ class PostsController extends Controller
         $post->url = $request->url;
         $post->user_id = 1;
         $post->save();
-        $request->session()->flash('updateMessage', 'Your Post was a successfully updated!');
+        $request->session()->flash('successMessage', 'Your Post was a successfully updated!');
         return \Redirect::action('PostsController@show', $post->id);
     }
 
@@ -117,7 +117,7 @@ class PostsController extends Controller
     {
         $post = \App\Models\Post::find($id);
         $post->delete();
-        $request->session()->flash('destroyMessage', 'Your Post was a successfully destroyed!');
+        $request->session()->flash('successMessage', 'Your Post was a successfully destroyed!');
         return \Redirect::action('PostsController@index');
     }
 }
