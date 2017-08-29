@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
+use Log;
 
 class PostsController extends Controller
 {
@@ -52,6 +53,10 @@ class PostsController extends Controller
         $post->user_id = 1;
         $post->save();
 
+        Log::info($request->all());
+
+
+
         $request->session()->flash('successMessage', 'Your Post was a success!');
 
         return redirect()->action('PostsController@index');
@@ -68,6 +73,9 @@ class PostsController extends Controller
     {
         $post = Post::find($id);
         $data['post'] = $post;
+        if (!$post) {   
+            abort(404);
+        }
         return view('posts.show',$data);
     }
 
@@ -82,6 +90,9 @@ class PostsController extends Controller
     {
         $post = Post::find($id);
         $data['post'] = $post;
+        if (!$post) {   
+            abort(404);
+        }
 
         return view('posts.edit', $data);
     }
@@ -105,6 +116,9 @@ class PostsController extends Controller
         $post->user_id = 1;
         $post->save();
         $request->session()->flash('successMessage', 'Your Post was a successfully updated!');
+        if (!$post) {   
+            abort(404);
+        }
         return \Redirect::action('PostsController@show', $post->id);
     }
 
@@ -119,6 +133,9 @@ class PostsController extends Controller
         $post = Post::find($id);
         $post->delete();
         $request->session()->flash('successMessage', 'Your Post was a successfully destroyed!');
+        if (!$post) {   
+            abort(404);
+        }
         return \Redirect::action('PostsController@index');
     }
 }
