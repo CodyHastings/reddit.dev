@@ -71,11 +71,9 @@ class PostsController extends Controller
      */
     public function show($id)
     {
-        $post = Post::find($id);
+        $post = Post::findOrFail($id);
         $data['post'] = $post;
-        if (!$post) {   
-            abort(404);
-        }
+        
         return view('posts.show',$data);
     }
 
@@ -88,11 +86,9 @@ class PostsController extends Controller
     public function edit($id)
 
     {
-        $post = Post::find($id);
+        $post = Post::findOrFail($id);
         $data['post'] = $post;
-        if (!$post) {   
-            abort(404);
-        }
+        
 
         return view('posts.edit', $data);
     }
@@ -109,16 +105,14 @@ class PostsController extends Controller
         
     {
         $this->validate($request, Post::$rules);
-        $post = Post::find($id);
+        $post = Post::findOrFail($id);
         $post->title = $request->title;
         $post->content = $request->content;
         $post->url = $request->url;
         $post->user_id = 1;
         $post->save();
         $request->session()->flash('successMessage', 'Your Post was a successfully updated!');
-        if (!$post) {   
-            abort(404);
-        }
+        
         return \Redirect::action('PostsController@show', $post->id);
     }
 
@@ -130,12 +124,10 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        $post = Post::find($id);
+        $post = Post::findOrFail($id);
         $post->delete();
         $request->session()->flash('successMessage', 'Your Post was a successfully destroyed!');
-        if (!$post) {   
-            abort(404);
-        }
+
         return \Redirect::action('PostsController@index');
     }
 }
