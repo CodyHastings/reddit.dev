@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Post;
 use Log;
 
+
 class PostsController extends Controller
 {
     /**
@@ -16,6 +17,11 @@ class PostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    // public function __construct()
+    // {
+    // $this->middleware('auth');
+    // }
+
     public function index()
     {
         $posts = Post::paginate(4);
@@ -41,8 +47,9 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, Post::$rules);
 
+        $this->validate($request, Post::$rules);
+        $loggedInUser = \Auth::user();
         $title = $request->input('title');
         $content = $request->input('content');
         $url = $request->input('url');
@@ -50,7 +57,7 @@ class PostsController extends Controller
         $post->title = $title;
         $post->content = $content;
         $post->url = $url;
-        $post->user_id = 1;
+        $post->user_id = $loggedInUser->id;
         $post->save();
 
         Log::info($request->all());

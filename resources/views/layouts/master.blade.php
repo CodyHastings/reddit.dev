@@ -46,14 +46,20 @@
       <ul class="nav navbar-nav">
         <li class=""><a href="/">Home</a></li>
         <li class="nav"><a href="{{action('PostsController@index')}}">All Posts</a></li>
+        @if(Auth::check())
         <li><a id="accountButton" href="">Account</a></li>
         <li><a href=""  >Your Posts</a></li>
         <li><a href="{{action('PostsController@create')}}">Create Thread</a></li> 
+        @endif
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/Users/Signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-        <li><a href="/Users/Login"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>
-        <li id="logoutLi"><form class="navbar-form" type="POST"><button id="logoutButton" type="submit" name="logout"><span class="glyphicon glyphicon-log-out"></span> Log Out</button></form></li>
+        @if(!Auth::check())
+        <li><a href="{{action('Auth\AuthController@getRegister')}}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li><a href="{{action('Auth\AuthController@getLogin')}}"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>
+        @endif
+        @if(Auth::check())
+        <li><a href="{{action('Auth\AuthController@getLogout')}}"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
+        @endif
         
       </ul>
     </div>
