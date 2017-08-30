@@ -21,6 +21,7 @@ Route::get('/lowercase/{word}', 'HomeController@lowercase');
 
 Route::get('/increment/{number}', 'HomeController@increment');
 
+Route::get('/userposts/{number}', 'PostsController@userposts');
 Route::resource('posts', 'PostsController');
 
 // Authentication routes...

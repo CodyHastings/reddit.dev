@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use Log;
+use App\User;
 
 
 class PostsController extends Controller
@@ -93,11 +94,15 @@ class PostsController extends Controller
     public function edit($id)
 
     {
-        $post = Post::findOrFail($id);
-        $data['post'] = $post;
-        
 
+        $post = Post::findOrFail($id);
+        if (\Auth::id() == $post->user_id){
+        $data['post'] = $post;
         return view('posts.edit', $data);
+            
+        }
+        
+        return redirect()->action('PostsController@index');
     }
 
     /**
@@ -137,4 +142,25 @@ class PostsController extends Controller
 
         return \Redirect::action('PostsController@index');
     }
+
+    public function userposts($id)
+    {
+        $posts = User::findOrFail($id)->posts;
+        $user = User::findOrFail($id);
+        $data['user'] = $user;
+        $data['posts'] = $posts;
+        return view('posts.userposts', $data);
+
+    }
+
+
+
+
+
+
+
+
+
+
+
 }

@@ -48,7 +48,7 @@
         <li class="nav"><a href="{{action('PostsController@index')}}">All Posts</a></li>
         @if(Auth::check())
         <li><a id="accountButton" href="">Account</a></li>
-        <li><a href=""  >Your Posts</a></li>
+        <li><a href="userposts/{{\Auth::id()}}">Your Posts</a></li>
         <li><a href="{{action('PostsController@create')}}">Create Thread</a></li> 
         @endif
       </ul>

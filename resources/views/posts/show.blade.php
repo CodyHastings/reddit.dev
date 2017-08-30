@@ -13,10 +13,12 @@
 
 		<h2>{{$post['title']}}</h2>
 		<h3>{{$post['content']}}</h3>
-		<p>posted on {{$post->created_at->format('l, F jS Y')}}</p>
-		<p>Last updated on {{$post->updated_at->format('l, F jS Y')}}</p>
-
+		<p>Posted By {{$post->user->name}}</p>
+		<p>Posted on {{$post->created_at}}</p>
+		<p>Last updated on {{$post->updated_at}}</p>
+		@if (Auth::id() == $post->user_id)
 		<a href="{{ action('PostsController@edit', $post->id) }}">Edit</a>
+		@endif
 
 
 		
