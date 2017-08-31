@@ -35,6 +35,26 @@
 	@if (session()->has('destroyMessage'))
     <div class="alert alert-error">{{ session('destroyMessage') }}</div>
 	@endif
+  {{-- div to hold search and categories --}}
+  <div>
+    
+    <form action="{{action('PostsController@index')}}" style="    position: fixed;
+    justify-content: right;
+    top: 50%;
+    left: 80%;">
+      <input type="text" name="q" placeholder="Search for a post">
+      <button class="btn btn-submit">Submit</button>
+
+
+    </form>
+
+
+
+
+
+  </div>
+
+  {{-- navbar to be moved into partial --}}
     <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">

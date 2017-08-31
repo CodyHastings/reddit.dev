@@ -15,13 +15,8 @@ Route::get('/', function (){
 	header('Location:/posts');
 });
 
-Route::get('/uppercase/{word}', 'HomeController@uppercase');
-
-Route::get('/lowercase/{word}', 'HomeController@lowercase');
-
-Route::get('/increment/{number}', 'HomeController@increment');
-
 Route::get('/userposts/{number}', 'PostsController@userposts');
+Route::get('/q', 'PostsController@index');
 Route::resource('posts', 'PostsController');
 
 // Authentication routes...
@@ -34,18 +29,8 @@ Route::get('auth/logout', 'Auth\AuthController@getLogout');
 Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 
+// Votes routes...
+Route::get('/upvote/{id}','PostsController@upvote');
+Route::get('/downvote/{id}','PostsController@downvote');
 
 
-Route::get('/random', function (){
-	return rand(1, 6);
-});
-
-
-
-Route::get('/roll-dice/{guess}', function ($guess){
-	$randomNumber = rand(1, 6);
-	$data['randomNumber'] = $randomNumber;
-	$data['guess'] = $guess;
-
-	return view('roll-dice', $data);
-});

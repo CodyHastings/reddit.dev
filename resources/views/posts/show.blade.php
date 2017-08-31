@@ -12,6 +12,8 @@
 		<h1>This Post</h1>
 
 		<h2>{{$post['title']}}</h2>
+		<a href="{{action('PostsController@upvote',$post->id)}}"><span class="glyphicon glyphicon-thumbs-up"></span></a>
+        <a href="{{action('PostsController@downvote',$post->id)}}"><span class="glyphicon glyphicon-thumbs-down"></span></a>
 		<h3>{{$post['content']}}</h3>
 		<p>Posted By {{$post->user->name}}</p>
 		<p>Posted on {{$post->created_at}}</p>

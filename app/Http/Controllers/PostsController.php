@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Post;
 use Log;
 use App\User;
+use App\Models\Vote;
 
 
 class PostsController extends Controller
@@ -23,11 +24,19 @@ class PostsController extends Controller
     // $this->middleware('auth');
     // }
 
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Post::paginate(4);
+
+        if($request->has('q')){
+            $q = $request->q;
+            $posts = Post::search($q);
+        } else {
+            $posts = Post::paginate(4);    
+        }
+        // $posts = Post::all();
         $data['posts'] = $posts;
         return view('posts.index', $data);
+
     }
 
     /**
@@ -153,6 +162,35 @@ class PostsController extends Controller
 
     }
 
+    public function upvote($id)
+    {
+        $post = Post::find($id);
+        $user_id = \Auth::id();
+        $post_id = Post::find($id)->user_id;
+        $vote = new Vote;
+        $vote->user_id = $user_id;
+        $vote->post_id = $post_id;
+        $vote->vote = 1;
+        $vote->save();
+
+        $data['post'] = $post;
+        return view('posts.show',$data);
+    }
+
+    public function downvote($id)
+    {
+        $post = Post::find($id);
+        $user_id = \Auth::id();
+        $post_id = Post::find($id)->user_id;
+        $vote = new Vote;
+        $vote->user_id = $user_id;
+        $vote->post_id = $post_id;
+        $vote->vote = -1;
+        $vote->save();
+
+        $data['post'] = $post;
+        return view('posts.show',$data);
+    }
 
 
 

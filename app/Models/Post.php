@@ -18,5 +18,12 @@ class Post extends BaseModel
    		return $this->belongsTo('\App\User', 'user_id');
    }
 
+       public static function search($q)
+    {
+      
+        $posts = Post::where('title', 'like', '%' . $q . '%')->orWhere('content', 'like', '%' . $q . '%')->paginate(4);
+   
+        return $posts;
+    }
 
 }
