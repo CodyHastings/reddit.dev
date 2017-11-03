@@ -9,8 +9,7 @@
 @section('content')
 
 	<main class="container">
-		<h1>Home</h1>
-
+		<div id="header">Cody Hastings</div>
 	</main>
 
 @stop
