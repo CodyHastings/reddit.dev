@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function (){
-	header('Location:/posts');
-});
+Route::get('/', 'HomeController@showHome');
 
 Route::get('/userposts/{number}', 'PostsController@userposts');
 Route::get('/q', 'PostsController@index');
