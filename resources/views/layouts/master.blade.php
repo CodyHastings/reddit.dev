@@ -44,8 +44,6 @@
     left: 80%;">
       <input type="text" name="q" placeholder="Search for a post">
       <button class="btn btn-submit">Submit</button>
-
-
     </form>
 
 
