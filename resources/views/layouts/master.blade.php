@@ -5,84 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/css/main.css">
-    <style type="text/css">
-  #logoutButton {
-  background-color: #222;
-  border: none;
-  color: #9d9d9d;
-}
-#logoutButton:hover {
-  background-color: #222;
-  border: none;
-  color: white;
-}
-#logoutLi {
-  padding-top: 5px;
-  background-color: #222;
-}
-
-
-    </style>
 	@yield('title')
 </head>
 <body>
-	@if (session()->has('successMessage'))
-    <div class="alert alert-success">{{ session('successMessage') }}</div>
-	@endif
-	@if (session()->has('updateMessage'))
-    <div class="alert alert-success">{{ session('updateMessage') }}</div>
-	@endif
-	@if (session()->has('destroyMessage'))
-    <div class="alert alert-error">{{ session('destroyMessage') }}</div>
-	@endif
-  {{-- div to hold search and categories --}}
-  <div>
-    
-    <form action="{{action('PostsController@index')}}" style="    position: fixed;
-    justify-content: right;
-    top: 50%;
-    left: 80%;">
-      <input type="text" name="q" placeholder="Search for a post">
-      <button class="btn btn-submit">Submit</button>
-    </form>
-
-
-
-
-
-  </div>
-
-  {{-- navbar to be moved into partial --}}
-    <nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">                
-      </button>
-      <a class="navbar-brand btn" href="/" >CloneRedd</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li class=""><a href="/">Home</a></li>
-        <li class="nav"><a href="{{action('PostsController@index')}}">All Posts</a></li>
-        @if(Auth::check())
-        <li><a id="accountButton" href="">Account</a></li>
-        <li><a href="/userposts/{{\Auth::id()}}">Your Posts</a></li>
-        <li><a href="{{action('PostsController@create')}}">Create Thread</a></li> 
-        @endif
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        @if(!Auth::check())
-        <li><a href="{{action('Auth\AuthController@getRegister')}}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-        <li><a href="{{action('Auth\AuthController@getLogin')}}"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>
-        @endif
-        @if(Auth::check())
-        <li><a href="{{action('Auth\AuthController@getLogout')}}"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
-        @endif
-        
-      </ul>
-    </div>
-  </div>
-</nav>
 	@yield('content')
 
 <script
