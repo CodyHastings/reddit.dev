@@ -9,4 +9,4 @@ To do list:
  4. - [ ] Create view for Portfolio and route.
  5. - [ ] Create view for Resume and route.
  6. - [ ] Create view for Blog and route.
-
+ 7. - [ ] Refactor master.blade.
