@@ -1,12 +1,27 @@
 body {
 	background-color: black;
+	color: white;
 }
 #header {
 	font-size: 6em;
 	background-color: black;
     color: white;
-    height: 100%;
+    height: 100vh;
     width: 100%;
     text-align: center;
     padding-top: 20%;
+}
+#whoIAm {
+	position: relative;
+	top: 100%;
+}
+.whoWhatWhy {
+	font-size: 3em;
+	font-family: 'Contrail One', cursive;
+}
+.whoWhatWhy div {
+	font-size: .5em;
+}
+.info {
+	font-size: 1em;
 }
