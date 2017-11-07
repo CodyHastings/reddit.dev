@@ -13,7 +13,7 @@ body {
 }
 #whoIAm {
 	position: relative;
-	top: 100%;
+	height: 100vh;
 }
 .whoWhatWhy {
 	font-size: 3em;

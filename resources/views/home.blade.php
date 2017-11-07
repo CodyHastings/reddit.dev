@@ -7,7 +7,16 @@
 @stop
 
 @section('content')
-
+	<canvas id="can"></canvas>
+<h1 class="header"> National Parks</h1>
+<div class="container">
+	<div class="row justify-content-md-center">
+		<div id="buttonWrap" class="col-md-3">
+			<button class="btn btn-success btn-block" id="addBall">Drop a Ball</button>
+			<button class="btn btn-success btn-block" id="bigBall">Drop a Big'n</button>
+			<button class="btn btn-success btn-block" id="200Balls">Drop lil Balls</button>
+			<button class="btn btn-warning btn-block" id="vaccumeBalls">Vaccume</button>
+		</div>
 	<main class="container">
 		<div id="header">Cody Hastings</div>
 	</main>

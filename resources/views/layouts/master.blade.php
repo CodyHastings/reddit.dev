@@ -17,5 +17,6 @@
   crossorigin="anonymous">
 </script>
 <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/canvas.js"></script>
 </body>
 </html>
